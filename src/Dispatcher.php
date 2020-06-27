@@ -6,7 +6,7 @@ namespace mhs\think\addons\manager;
 use mhs\think\addons\manager\controller\Index;
 
 class Dispatcher
-{k
+{
     public static function exec($action = null)
     {
         if (empty($action)) {
