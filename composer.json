@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "mhs/think-addons": "~0.0.1"
+        "mhs/think-addons": "dev-master"
     },
     "autoload": {
         "psr-4": {
