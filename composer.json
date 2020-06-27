@@ -1,0 +1,28 @@
+{
+    "name": "mhs/think-addons-manager",
+    "description": "think addons manager",
+    "minimum-stability": "stable",
+    "version": "0.0.1",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "maohongshan",
+            "email": "mhongshan@163.com"
+        }
+    ],
+    "require": {
+        "mhs/think-addons": "~0.0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "mhs\\think\\addons\\manager\\": "src"
+        }
+    },
+    "extra": {
+        "think": {
+            "services": [
+                "\\mhs\\think\\addons\\manager\\service\\AddonsManagerService"
+            ]
+        }
+    }
+}
