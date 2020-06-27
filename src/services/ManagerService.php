@@ -98,6 +98,7 @@ class ManagerService
         if (!$class->install()) { // 安装失败
             return $this->failed('插件安装失败');
         }
+        $this->changeStatus($params['type'], $params['name'], 1);
 
         return $this->success('插件安装成功');
     }
@@ -124,6 +125,7 @@ class ManagerService
         if (!$class->uninstall()) { // 卸载失败
             return $this->failed('插件卸载失败');
         }
+        $this->changeStatus($params['type'], $params['name'], 0);
 
         return $this->success('插件卸载成功');
     }
@@ -150,6 +152,7 @@ class ManagerService
         if (!$class->enable()) { // 启用失败
             return $this->failed('插件启用失败');
         }
+        $this->changeStatus($params['type'], $params['name'], 1);
 
         return $this->success('插件启用成功');
     }
@@ -171,6 +174,7 @@ class ManagerService
         if (!$class->disable()) { // 禁用失败
             return $this->failed('插件禁用失败');
         }
+        $this->changeStatus($params['type'], $params['name'], 2);
 
         return $this->success('插件禁用成功');
     }
@@ -223,5 +227,11 @@ class ManagerService
             'data' => $data,
         ];
     }
-
+    protected function changeStatus($type, $name, $status)
+    {
+        $path = $this->getAddonPath($type, $name);
+        $info = include $path . 'info.php';
+        $info['status'] = $status;
+        file_put_contents($path.'info.php', "<?php\r\n return ".var_export($info, true).';');
+    }
 }
